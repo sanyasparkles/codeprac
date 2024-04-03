@@ -33,7 +33,7 @@ export const baconiankey = [
 	},
     {
 		encrypted: 'ABAAA',
-		plain: 'I/J',
+		plain: 'IJ',
 	},
     {
 		encrypted: 'ABAAB',
@@ -77,7 +77,7 @@ export const baconiankey = [
 	},
     {
 		encrypted: 'BAABB',
-		plain: 'U/V',
+		plain: 'UV',
 	},
     {
 		encrypted: 'BABAA',
