@@ -1,14 +1,35 @@
 <script>
     import { onMount } from "svelte";
 
-    import {baconiankey} from '../js/baconiankey.js'
+    import {baconiankey} from '../js/key.js'
     import {getNewProblem} from '../js/networking.js'
+
+    let cipher = 0;
+
+    let cipherName;
+
+    $: { if (cipher == 0) {
+            cipherName = "baconian"
+        }
+        else if (cipher == 1) {
+            cipherName = "hill"
+        }
+        else if (cipher == 2) {
+            cipherName = "morse"
+        }
+        else {
+            cipherName = "MISTAKE"
+        }
+        newProblem()
+
+
+    }
     
     let encrypted, correctPlain, guessedPlain;
     let score = 0;
 
     function newProblem() { 
-        let data = getNewProblem()
+        let data = getNewProblem(cipher)
         encrypted = data.encrypted;
         correctPlain = data.plain;
     }
@@ -35,7 +56,9 @@
 
 
 <div>
+    <button on:click={() => (cipher = (cipher + 1) % 3)}>{cipherName}</button>
     <p>{encrypted}</p>
     <input class = "input" type="text" bind:this={guessedPlain} placeholder="Letter">
     <p>score = {score}</p>
+
 </div>
